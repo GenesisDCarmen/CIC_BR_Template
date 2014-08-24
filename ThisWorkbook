@@ -2,10 +2,17 @@ Private Sub Workbook_Open()
 'Muestra el nombre del usuario de windows
 'En la celda T11 de la pestaña RRL
 
+Dim usuario As String
+usuario = Environ("UserName")
+
 Set Hoja = Worksheets("RRL")
 
 Hoja.Range("T11").Value = Application.UserName
-Worksheets("RRL").Range("T26:V26").FormulaR1C1 = ThisWorkbook.Name
+Hoja.Range("T12").Value = "=UPPER(" & Chr(34) & usuario & Chr(34) & ")"
+Hoja.Range("T26:V26").FormulaR1C1 = ThisWorkbook.Name '=PROPER(fg)
+
+Worksheets("RRL").Range("T32:V32").FormulaR1C1 = "=Template!R[-27]C[-13]"
+Worksheets("RRL").Range("T23:V23").FormulaR1C1 = "=Template!R[-17]C[-13]"
 
 'Dim Fila As Integer
 'Dim Columna As Integer
