@@ -1,0 +1,168 @@
+'Muestra el nombre del usuario de windows
+'En la celda T11 de la pestaña RRL
+
+
+
+Private Sub CB_Equipo_Change()
+
+End Sub
+
+Private Sub CB_Equipo_KeyDown(ByVal KeyCode As MSForms.ReturnInteger, ByVal Shift As Integer)
+If (KeyCode = 13) Then
+'Or (KeyCode = 40)
+CBSites.Activate
+'Worksheets("Template").Range("B14").Select
+End If
+End Sub
+
+Private Sub CB_Operadora_Change()
+If IsEmpty(Range("B4")) Then
+
+Dim FechaActual As Date
+FechaActual = Now
+
+Worksheets("Template").Range("B4").FormulaR1C1 = FechaActual
+End If
+'"ISBLANK(R[-11]C)"
+
+End Sub
+
+Private Sub CB_Operadora_KeyDown(ByVal KeyCode As MSForms.ReturnInteger, ByVal Shift As Integer)
+
+If (KeyCode = 13) Then
+' Or (KeyCode = 40)
+CBOperadora.Activate
+End If
+
+End Sub
+
+Private Sub CBOperadora_KeyDown(ByVal KeyCode As MSForms.ReturnInteger, ByVal Shift As Integer)
+
+If (KeyCode = 13) Then
+'Or (KeyCode = 40)
+Worksheets("Template").Range("B7").Select
+End If
+
+End Sub
+Private Sub CBSites_KeyDown(ByVal KeyCode As MSForms.ReturnInteger, ByVal Shift As Integer)
+
+If (KeyCode = 13) Then
+'Or (KeyCode = 40)
+Worksheets("Template").Range("B15").Select
+End If
+
+End Sub
+
+Private Sub CBSeverity_KeyDown(ByVal KeyCode As MSForms.ReturnInteger, ByVal Shift As Integer)
+
+If (KeyCode = 13) Then
+'Or (KeyCode = 40)
+Worksheets("Template").Range("B18").Select
+End If
+
+End Sub
+Private Sub CB_SDM_KeyDown(ByVal KeyCode As MSForms.ReturnInteger, ByVal Shift As Integer)
+
+If (KeyCode = 13) Then
+'Or (KeyCode = 40)
+'Worksheets("Template").Range("J15").Select
+CB_RRL.Activate
+End If
+
+End Sub
+Private Sub CB_RRL_KeyDown(ByVal KeyCode As MSForms.ReturnInteger, ByVal Shift As Integer)
+
+If (KeyCode = 13) Then
+'Or (KeyCode = 40)
+'Worksheets("Template").Range("J16").Select
+CB_FLS.Activate
+KeyCode = 1
+End If
+
+End Sub
+
+Private Sub CB_FLS_KeyDown(ByVal KeyCode As MSForms.ReturnInteger, ByVal Shift As Integer)
+
+If (KeyCode = 13) Then
+'Or (KeyCode = 40)
+Worksheets("Template").Range("J17").Select
+End If
+
+End Sub
+Private Sub CBSites_Change()
+If IsEmpty(Worksheets("RRL").Range("T17")) Then
+Exit Sub
+Else
+'Worksheets("Template").Range("B12").FormulaR1C1 = Worksheets("RRL").Range("T20")
+'"=IFERROR(VLOOKUP(R[1]C,Sites!R2C5:R4703C12,2,FALSE),""..."")"
+Worksheets("Template").Range("B13").FormulaR1C1 = Worksheets("RRL").Range("T17")
+'"=IFERROR(VLOOKUP(R[1]C,Sites!R2C4:R4703C12,2,FALSE),""..."")"
+Worksheets("Template").Range("B5").FormulaR1C1 = Worksheets("RRL").Range("T14")
+End If
+End Sub
+
+
+
+
+Private Sub Worksheet_Activate()
+Set Hoja = Worksheets("RRL")
+
+'Hoja.Range("T11").Value = Application.UserName
+End Sub
+
+
+
+Private Sub Worksheet_Change(ByVal Target As Range)
+'If CBOperadora.Activate Then
+'Application.OnKey "{ENTER}", "Tu_macro"
+'End If
+End Sub
+Private Sub Worksheet_SelectionChange(ByVal Target As Range)
+
+
+'If Intersect(Target, Range("B5")) Is Nothing Then
+'Exit Sub
+'Else
+'CB_Operadora.Activate
+'End If
+
+
+'If Intersect(Target, Range("B6")) Is Nothing Then
+'Exit Sub
+'Else
+'CBOperadora.Activate
+'End If
+
+If Target.Address = "$B$5" Then
+CB_Operadora.Activate
+ElseIf Target.Address = "$B$6" Then
+CBOperadora.Activate
+ElseIf Target.Address = "$B$14" Then
+CBSites.Activate
+ElseIf Target.Address = "$B$17" Then
+CBSeverity.Activate
+ElseIf Target.Address = "$J$14:$K$14" Then
+CB_SDM.Activate
+ElseIf Target.Address = "$J$15:$K$15" Then
+CB_RRL.Activate
+ElseIf Target.Address = "$J$16:$K$16" Then
+CB_FLS.Activate
+ElseIf Target.Address = "$B$13" Then
+CB_Equipo.Activate
+End If
+
+'If Range("B6").Select = True Then
+'MsgBox "Run Macro"
+'macro1
+'End If
+'End Sub
+
+End Sub
+
+'---------------------------------------------------------------------------------------------
+Private Sub OptionButton318_Checked()
+
+'OptionButton319.Click
+MsgBox "hola"
+
+End Sub
