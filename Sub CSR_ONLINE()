@@ -1,0 +1,44 @@
+Sub CSR_ONLINE()
+Set OutApp = CreateObject("Outlook.Application")
+OutApp.Session.logon
+Set Outmail = OutApp.CreateItem(0)
+
+'Indica el tipo de CSR que es necesario para guardar en la bitácora de Online
+Worksheets("RRL").Range("AB2").FormulaR1C1 = "Online"
+
+Dim signature As String
+'signature = Outmail.HTMLBody
+'signature = Outmail.HTMLBody
+'Outmail.HTMLBody = signature
+
+Application.Run "Beta"
+
+With Outmail
+'From = "customer.support.br@ericsson.com"
+.To = Worksheets("CSR_ONLINE").Range("A2")
+'(Le pone el nombre al asunto, o bien el que le digamos (entre comillas),...)
+' (...o el de la casilla que indiquemos en el Range)
+.cc = Worksheets("CSR_ONLINE").Range("A3")
+.Display
+.Subject = Worksheets("CSR_ONLINE").Range("A4") & Worksheets("RRL").Range("X11")
+'Range("b9") & " - " & Range("B4") & " - " & "Información"
+.HTMLBody = "<font size='2' face='Tahoma'>" & Worksheets("CSR_ONLINE").Range("A5") & "<BR>" _
+        & "<BR>" & Worksheets("CSR_ONLINE").Range("C6") & "<B>" & Worksheets("CSR_ONLINE").Range("D6") & "</B>" & Worksheets("CSR_ONLINE").Range("E6") & "<B>" & Worksheets("CSR_ONLINE").Range("F6") & "</B>" & Worksheets("CSR_ONLINE").Range("G6") _
+        & "<BR>" & Worksheets("CSR_ONLINE").Range("A7") _
+        & "<BR>" & "<font color='#000080'>" & Worksheets("CSR_ONLINE").Range("A8") & "<BR>" & Worksheets("CSR_ONLINE").Range("A10") & "<BR>" & Worksheets("CSR_ONLINE").Range("A11") & "<BR>" & Worksheets("CSR_ONLINE").Range("A12") & "</font>" & "</font>" & .HTMLBody
+
+
+
+'vbNewLine
+
+' (Adjunta el archivo creado. También puede adjuntar un archivo poniendo la ruta)
+'.Attachments.Add TempFilePath & TempFileName & FileExtStr
+'.Attachments.Add "C:\Documents and Settings\Pc de Mau\Escritorio\ xx nombre y extensión del archivoXX"
+' (Con "save" guarda el mail preparado en la "carpeta de entrada", SIN ENVIAR,...)
+' (...y con "send" se envía)
+'.Send
+
+'.Open
+End With
+
+End Sub
