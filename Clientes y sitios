@@ -1,0 +1,21 @@
+Private Sub TextBox1_Change()
+
+ActiveSheet.PivotTables("PivotTable2").PivotFields("Name").ClearAllFilters
+
+ActiveSheet.PivotTables("PivotTable2").PivotFields("Name").PivotFilters.Add Type:=xlCaptionContains, Value1:=TextBox1.Text
+
+Columns("b").ColumnWidth = 48
+
+
+
+End Sub
+
+Private Sub TextBox2_Change()
+
+ActiveSheet.PivotTables("PivotTable4").PivotFields("Site without space").ClearAllFilters
+
+ActiveSheet.PivotTables("PivotTable4").PivotFields("Site without space").PivotFilters.Add Type:=xlCaptionContains, Value1:=TextBox2.Text
+
+Columns("c").ColumnWidth = 48
+
+End Sub
