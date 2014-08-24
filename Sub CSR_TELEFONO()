@@ -1,0 +1,49 @@
+Sub CSR_TELEFONO()
+
+Set OutApp = CreateObject("Outlook.Application")
+OutApp.Session.logon
+Set Outmail = OutApp.CreateItem(0)
+With Outmail
+
+'Indica el tipo de CSR que es necesario para guardar en la bitácora de Online
+Worksheets("RRL").Range("AB2").FormulaR1C1 = "Phone"
+
+Application.Run "Beta"
+
+'From = "customer.support.br@ericsson.com"
+.To = Worksheets("CSR_TELEFONO").Range("A2")
+'(Le pone el nombre al asunto, o bien el que le digamos (entre comillas),...)
+' (...o el de la casilla que indiquemos en el Range)
+.cc = Worksheets("CSR_TELEFONO").Range("A3")
+
+.Subject = Worksheets("CSR_TELEFONO").Range("A4") & Worksheets("RRL").Range("X11")
+'Range("b9") & " - " & Range("B4") & " - " & "Información"
+.Display
+.HTMLBody = "<font size='2' face='Tahoma'>" & Worksheets("CSR_TELEFONO").Range("A5") & "<BR>" _
+        & "<BR>" & Worksheets("CSR_TELEFONO").Range("C6") & Worksheets("CSR_TELEFONO").Range("D6") & Worksheets("CSR_TELEFONO").Range("E6") & Worksheets("CSR_TELEFONO").Range("F6") & Worksheets("CSR_TELEFONO").Range("G6") _
+        & "<BR>" & Worksheets("CSR_TELEFONO").Range("C7") & Worksheets("CSR_TELEFONO").Range("D7") _
+        & "<BR>" & Worksheets("CSR_TELEFONO").Range("A8") _
+        & "<BR>" & "<font color='#000080'>" & Worksheets("CSR_TELEFONO").Range("A9") & "<BR>" & Worksheets("CSR_TELEFONO").Range("A10") & "<BR>" & Worksheets("CSR_TELEFONO").Range("A11") & "<BR>" & Worksheets("CSR_TELEFONO").Range("A12") & "</font>" _
+        & "<BR>" & Worksheets("CSR_TELEFONO").Range("A13") _
+        & "<BR>" & Worksheets("CSR_TELEFONO").Range("A14") _
+        & "<BR>" & Worksheets("CSR_TELEFONO").Range("A15") _
+        & "<BR>" & Worksheets("CSR_TELEFONO").Range("A16") _
+        & "<BR>" & Worksheets("CSR_TELEFONO").Range("A17") _
+        & "<BR>" & Worksheets("CSR_TELEFONO").Range("A18") _
+        & "<BR>" & Worksheets("CSR_TELEFONO").Range("A19") _
+        & "<BR>" & Worksheets("CSR_TELEFONO").Range("A20") _
+        & "<BR>" & Worksheets("CSR_TELEFONO").Range("A21") _
+        & "<BR>" & Worksheets("CSR_TELEFONO").Range("A22") & "</font>" & .HTMLBody
+
+'vbNewLine
+
+' (Adjunta el archivo creado. También puede adjuntar un archivo poniendo la ruta)
+'.Attachments.Add TempFilePath & TempFileName & FileExtStr
+'.Attachments.Add "C:\Documents and Settings\Pc de Mau\Escritorio\ xx nombre y extensión del archivoXX"
+' (Con "save" guarda el mail preparado en la "carpeta de entrada", SIN ENVIAR,...)
+' (...y con "send" se envía)
+'.Send
+
+'.Open
+End With
+End Sub
