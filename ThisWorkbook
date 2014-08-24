@@ -1,0 +1,38 @@
+Private Sub Workbook_Open()
+'Muestra el nombre del usuario de windows
+'En la celda T11 de la pestaña RRL
+
+Set Hoja = Worksheets("RRL")
+
+Hoja.Range("T11").Value = Application.UserName
+Worksheets("RRL").Range("T26:V26").FormulaR1C1 = ThisWorkbook.Name
+
+'Dim Fila As Integer
+'Dim Columna As Integer
+'Dim Valor As String
+'Dim ValorCelda As String
+'Dim Celda As Variant
+
+'Fila = Target.Row 'Tomamos el valor de Fila
+'Columna = Target.Column 'Tomamos el valor de la Columna
+'Valor = Target ' Tomamos el Valor de la Celda
+
+'If Valor <> "" Then ' Hacemos una Validación si esta Vacía
+'If Columna = 2 Then ' Preguntamos si esta en la Columna B
+'If Len(Valor) = 1 Then ' Preguntamos si ingreso solo un Carácter
+'Valor = UCase(Valor) ' Lo Convertimos en Mayúscula
+'ElseIf Len(Valor) > 1 Then
+'Valor = UCase(Mid(Valor, 1, 1)) & LCase(Mid(Valor, 2, Len(Valor))) 'Convertimos el primer Carácter en Mayúscula
+'End If
+'For Each Celda In Sheets(2).Range("A2", "A20") ' Ciclo Para Buscar en la Columna A
+'For Each Celda In Sheets("Sites").Range("B2", Sheets(2).Range("A2").End(xlDown)) ' Ciclo Para Buscar en la Columna A
+'ValorCelda = Celda.Value
+'If Valor = Mid(ValorCelda, 1, Len(Valor)) Then
+'Cells(Fila, Columna) = ValorCelda
+'Exit For
+'End If
+'Next Celda
+'End If
+'End If
+
+End Sub
